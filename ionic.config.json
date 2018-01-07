@@ -1,0 +1,8 @@
+{
+  "name": "moblogclient",
+  "app_id": "70c785ab",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
