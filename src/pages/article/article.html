@@ -1,0 +1,50 @@
+<!--
+  Generated template for the ArticlePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Capture Article</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label stacked>Title</ion-label>
+      <ion-input [(ngModel)]="title" name="title" type="text" placeholder="Enter a title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Content</ion-label>
+      <ion-textarea [(ngModel)]="content" placeholder="Enter a description"></ion-textarea>
+
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Photo - tap to change</ion-label>
+      <ion-thumbnail item-start>
+        <img (tap)="takePhoto()" [src]="base64Image">
+      </ion-thumbnail>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Chapter</ion-label>
+      <ion-select [(ngModel)]="chapter_title_selection">
+        <ion-option *ngFor="let chapter  of chapter_title" [value]="chapter">{{chapter}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+
+  </ion-list>
+
+  <!--button full ion-button (tap)="takePhoto()">Photo</button-->
+  <button full ion-button (tap)="validate() ">Validate</button>
+</ion-content>
