@@ -16,7 +16,7 @@
 <ion-content>
   <ion-list inset>
     <ion-item *ngFor="let article of articles">
-      <h2>{{article.title}}</h2>
+      <h2>{{article.title}} / {{article.id}}</h2>
       <p>{{article.content}}</p>
       <button ion-button (click)="getArticle(article.id)">
          <ion-icon name="ios-eye-outline"></ion-icon>

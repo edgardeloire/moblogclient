@@ -68,12 +68,12 @@ export class ArticlePage {
      this.articleApiRestProvider.postArticle(body)
        .then(data => {
          let toast = this.toastCtrl.create({
-           message: 'Article : '+this.title+'Chapter : '+this.chapter_title_selection+' has been created',
-           duration: 2000,
+           message: 'Article : '+this.title+ 'Id :'+data.id+' Chapter : '+this.chapter_title_selection+' has been created',
+           duration: 3000,
            position: 'bottom'
          });
          toast.present();
-         console.log('Article : '+this.title+'Chapter : '+this.chapter_title_selection+' has been created');
+         console.log('Article : '+this.title+ ' id :'+data.id+' Chapter : '+this.chapter_title_selection+' has been created');
        });
     }
 }
