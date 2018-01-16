@@ -4,5 +4,5 @@
 Mobile tool to Capture post title+Content+Photo
 
 ## Todo
-1. [X] Mise en place git
-2. [] Push photo
+[X] Mise en place git
+[] Push photo
