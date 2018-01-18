@@ -7,5 +7,6 @@ Mobile tool to Capture post title+Content+Photo
 - [X] Mise en place git
 - [ ] Push photo :
    - [X] recuperer l'id de l'enregistrement
-   - [ ]
+   - [ ] save fichier local
+   - [ ] formdata send
 - [ ] Gestion des erreurs

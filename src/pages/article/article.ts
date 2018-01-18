@@ -20,7 +20,7 @@ export class ArticlePage {
   public base64Image:string="assets/imgs/nophoto.png";
   public chapter_title: Array<string>= UICONFIG.chapter_title;
   public chapter_title_selection : string;
-
+  public imageData:any;
 
   constructor(
      public navCtrl: NavController,
@@ -32,8 +32,6 @@ export class ArticlePage {
      private articleApiRestProvider: ArticleApiRestProvider,
      private toastCtrl: ToastController)
      {}
-
-
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ArticlePage');
@@ -48,9 +46,10 @@ export class ArticlePage {
       }
 
       this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
+      // imageData is either a base64 encoded string or a file URI.
       // If it's base64:
       this.base64Image =  "data:image/jpeg;base64," + imageData;
+      this.imageData=imageData;
       }, (err) => {
          console.log(err);
                alert(err);
@@ -58,22 +57,37 @@ export class ArticlePage {
  }
   validate(){
      let body={
-
             "chapter_id": Number(this.chapter_title_selection),
             "content": this.content,
             "photo_file_name": "no-photo.jpg",
             "subchapter_id": 1,
             "title": this.title
        }
+     let imageContent ={
+        base64Image : this.imageData
+     }
      this.articleApiRestProvider.postArticle(body)
        .then(data => {
+         let response:any=data
          let toast = this.toastCtrl.create({
-           message: 'Article : '+this.title+ 'Id :'+data.id+' Chapter : '+this.chapter_title_selection+' has been created',
+           message: 'Article : '+this.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been created',
            duration: 3000,
            position: 'bottom'
          });
          toast.present();
-         console.log('Article : '+this.title+ ' id :'+data.id+' Chapter : '+this.chapter_title_selection+' has been created');
+         console.log('Article : '+this.title+ ' id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been created');
+         this.articleApiRestProvider.postPhotoArticle(imageContent,response.id)
+          .then(data => {
+           let toast = this.toastCtrl.create({
+             message: 'Photo : '+this.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been saved',
+             duration: 3000,
+             position: 'bottom'
+           });
+           toast.present();
+          });
        });
+
+
+
     }
 }
