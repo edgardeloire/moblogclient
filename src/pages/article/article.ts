@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
+
 import { IonicPage, NavController, NavParams,ToastController } from 'ionic-angular';
-import { AlertController } from 'ionic-angular';
+import { AlertController,Events } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -23,6 +24,7 @@ export class ArticlePage {
   public imageData:any;
 
   constructor(
+     public events: Events,
      public navCtrl: NavController,
      public navParams: NavParams,
      private alertCtrl: AlertController,
@@ -63,28 +65,34 @@ export class ArticlePage {
             "subchapter_id": 1,
             "title": this.title
        }
+
      let imageContent ={
         base64Image : this.imageData
      }
      this.articleApiRestProvider.postArticle(body)
        .then(data => {
-         let response:any=data
-         let toast = this.toastCtrl.create({
-           message: 'Article : '+this.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been created',
-           duration: 3000,
-           position: 'bottom'
-         });
-         toast.present();
-         console.log('Article : '+this.title+ ' id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been created');
-         this.articleApiRestProvider.postPhotoArticle(imageContent,response.id)
-          .then(data => {
-           let toast = this.toastCtrl.create({
-             message: 'Photo : '+this.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been saved',
-             duration: 3000,
-             position: 'bottom'
-           });
-           toast.present();
-          });
+            let response:any=data
+            let toast = this.toastCtrl.create({
+              message: 'Article : '+this.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been created',
+              duration: 3000,
+              position: 'bottom'
+            });
+            toast.present();
+            console.log('Article:'+this.title+ ' Id:'+response.id+' Chapter:'+this.chapter_title_selection+' has been created');
+            // broacast event to refresh list
+            this.events.publish('article:created');
+
+            if (this.imageData != null) {
+               this.articleApiRestProvider.postPhotoArticle(imageContent,response.id)
+                .then(data => {
+                 let toast = this.toastCtrl.create({
+                   message: 'Photo : '+this.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been saved',
+                   duration: 3000,
+                   position: 'bottom'
+                 });
+                 toast.present();
+               });
+            }
        });
 
 

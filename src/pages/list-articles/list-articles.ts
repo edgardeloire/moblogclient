@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Events } from 'ionic-angular';
 import {ArticleApiRestProvider} from '../../providers/article-api-rest/article-api-rest';
 
 /**
@@ -20,9 +20,14 @@ export class ListArticlesPage {
   article: any;
 
   constructor(
+     public events:Events,
      public navCtrl: NavController,
      public navParams: NavParams,
      public articleApiRestProvider: ArticleApiRestProvider) {
+     events.subscribe('article:created', () => {
+       // user and time are the same arguments passed in `events.publish(user, time)`
+       console.log('article:created');
+     });
   }
   getArticles() {
     this.articleApiRestProvider.getArticles()
@@ -44,5 +49,6 @@ export class ListArticlesPage {
     this. getArticles();
     console.log('ionViewDidLoad ListArticlesPage');
   }
+
 
 }
