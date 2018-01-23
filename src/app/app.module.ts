@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 
 import { HomePage } from '../pages/home/home';
 import { ArticlePage } from '../pages/article/article';
+//import { ArticleDetailPage } from '../pages/articleDetail/article-detail';
 import { ListArticlesPage } from '../pages/list-articles/list-articles';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -22,6 +23,7 @@ import { ArticleApiRestProvider } from '../providers/article-api-rest/article-ap
     HomePage,
     TabsPage,
     ArticlePage
+
   ],
   imports: [
     BrowserModule,

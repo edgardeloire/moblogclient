@@ -16,15 +16,19 @@
 <ion-content padding>
 
   <ion-list>
+    <ion-item>
+      <ion-label stacked>Id</ion-label>
+      <ion-input [(ngModel)]="article_id" type="text" placeholder="Enter a title"></ion-input>
+    </ion-item>
 
     <ion-item>
       <ion-label stacked>Title</ion-label>
-      <ion-input [(ngModel)]="title" name="title" type="text" placeholder="Enter a title"></ion-input>
+      <ion-input [(ngModel)]="articleData.title" type="text" placeholder="Enter a title"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Content</ion-label>
-      <ion-textarea [(ngModel)]="content" placeholder="Enter a description"></ion-textarea>
+      <ion-textarea rows="8" [(ngModel)]="articleData.content" placeholder="Enter a description"></ion-textarea>
 
     </ion-item>
 
@@ -36,15 +40,16 @@
     </ion-item>
 
     <ion-item>
+
       <ion-label>Chapter</ion-label>
-      <ion-select [(ngModel)]="chapter_title_selection">
-        <ion-option *ngFor="let chapter  of chapter_title" [value]="chapter">{{chapter}}</ion-option>
+
+      <ion-select [(ngModel)]="articleData.chapter_entry">
+        <ion-option *ngFor="let chapter  of chapter_title" [value]="chapter">{{chapter}}
+        </ion-option>
       </ion-select>
     </ion-item>
 
-
   </ion-list>
-
-  <!--button full ion-button (tap)="takePhoto()">Photo</button-->
-  <button full ion-button (tap)="validate() ">Validate</button>
+  <button full ion-button (click)="update(article_id) ">Update</button>
+  <button full ion-button (click)="delete(article_id) ">Delete</button>
 </ion-content>

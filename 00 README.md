@@ -10,3 +10,9 @@ Mobile tool to Capture post title+Content+Photo
    - [X] save fichier local
    - [X] formdata send
 - [ ] Gestion des erreurs
+- [ ] Gestion du token
+- [ ] Vignette Liste
+- [ ] Display - MAJ sur Liste
+- [ ] login screen
+- [ ] authentication
+- [ ] local storage for photo and data
