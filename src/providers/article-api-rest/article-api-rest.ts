@@ -63,27 +63,27 @@ export class ArticleApiRestProvider {
        });
     });
    }
-   // Create Article
+   // Update Article
    patchArticle(article_id,body) {
    return new Promise(resolve =>  {
-       this.http.patch(RESTCONFIG.apiUrl+'article/'+article_id,body).subscribe
+       this.http.put(RESTCONFIG.apiUrl+'article/'+article_id,body).subscribe
        (data => {
          resolve(data);
-         console.log(data);
+         console.log("SUCCESS patchArticle : "+JSON.stringify(data));
        }, err => {
-         console.log("ERROR : "+err);
+         console.log("ERROR patchArticle : "+JSON.stringify(err));
        });
     });
    }
-   // Create Article
+   // Delete Article
    deleteArticle(article_id) {
    return new Promise(resolve =>  {
        this.http.delete(RESTCONFIG.apiUrl+'article/'+article_id).subscribe
        (data => {
          resolve(data);
-         console.log(data);
+         console.log("SUCCESS deleteArticle : "+JSON.stringify(data));
        }, err => {
-         console.log("ERROR : "+err);
+         console.log("ERROR deleteArticle : "+JSON.stringify(err));
        });
     });
    }

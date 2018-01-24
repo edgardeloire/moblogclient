@@ -112,12 +112,12 @@ export class ArticleDetailPage {
        .then(data => {
             let response:any=data
             let toast = this.toastCtrl.create({
-              message: 'Article : '+this.articleData.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been created',
+              message: 'Article : '+this.articleData.title+' has been updated',
               duration: 3000,
               position: 'bottom'
             });
             toast.present();
-            console.log('Article:'+this.articleData.title+ ' Id:'+response.id+' Chapter:'+this.chapter_title_selection+' has been created');
+            console.log('Article: '+this.articleData.title+' has been updated');
             // broacast event to refresh list
             this.events.publish('article:created');
 
@@ -125,8 +125,8 @@ export class ArticleDetailPage {
                this.articleApiRestProvider.postPhotoArticle(imageContent,response.id)
                 .then(data => {
                  let toast = this.toastCtrl.create({
-                   message: 'Photo : '+this.articleData.title+ 'Id :'+response.id+' Chapter : '+this.chapter_title_selection+' has been saved',
-                   duration: 3000,
+                   message: 'Photo udpated',
+                   duration: 2000,
                    position: 'bottom'
                  });
                  toast.present();
